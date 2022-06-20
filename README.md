@@ -3,11 +3,11 @@
 ## Install all dependencies
 
 ```
-yarn install
+make install
 ```
 
 ## Run app on local
 
 ```
-yarn start
+make run.app
 ```
