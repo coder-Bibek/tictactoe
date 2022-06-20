@@ -1,0 +1,35 @@
+{
+  "name": "tictactoe",
+  "version": "1.0.0",
+  "description": "Multi user tictactoe game",
+  "main": "index.js",
+  "repository": "git@github.com:coder-Bibek/tictactoe.git",
+  "author": "Bibek Kumar Bidari",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "install": "lerna bootstrap",
+    "diff": "lerna diff",
+    "lint": "lerna run lint",
+    "new-version": "lerna version --conventional-commits --yes",
+    "prepare": "husky install"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "17.0.2",
+    "@commitlint/config-conventional": "17.0.2",
+    "cz-conventional-changelog": "3.3.0",
+    "husky": "8.0.1",
+    "lerna": "5.1.4"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint",
+      "commit-msg": "[[ -n $HUSKY_BYPASS ]] || commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  }
+}
