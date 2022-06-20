@@ -8,6 +8,10 @@
   "license": "UNLICENSED",
   "private": true,
   "scripts": {
+    "install": "lerna bootstrap",
+    "diff": "lerna diff",
+    "lint": "lerna run lint",
+    "new-version": "lerna version --conventional-commits --yes",
     "prepare": "husky install"
   },
   "devDependencies": {
