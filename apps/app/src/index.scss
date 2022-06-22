@@ -4,3 +4,11 @@
   color: var(--color, rgb(78, 78, 78));
   font-family: 'Roboto', sans-serif;
 }
+
+button:focus,
+button::after,
+input:focus,
+input::after {
+  box-shadow: none;
+  outline: none;
+}
