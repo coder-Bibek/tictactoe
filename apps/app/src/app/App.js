@@ -1,9 +1,14 @@
+import Home from '../pages/Home';
+import MainLayout from '../common/layout';
+
 import './App.scss';
 
 function App() {
   return (
     <div className="App">
-      <h1>Welcome to Tictactoe</h1>
+      <MainLayout>
+        <Home />
+      </MainLayout>
     </div>
   );
 }
