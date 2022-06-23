@@ -6,14 +6,14 @@ export default function Home() {
         <div className={styles.homeContainer}>
             <h1 className={styles.header}>Welcome to Tictactoe</h1>
             <div className={styles.inputContainer}>
-                <div>
+                <section>
                     <p>Enter a username:</p>
                     <input 
                         name="username" 
                         className={styles.usernameInput} 
                         placeholder="Enter a username" 
                     />
-                </div>
+                </section>
                 <div className={styles.nextButton}>
                     <Button title={"Next"} isLoading={false} />
                 </div>

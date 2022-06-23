@@ -1,3 +1,5 @@
+import { Routes, Route} from "react-router-dom";
+
 import Home from '../pages/Home';
 import MainLayout from '../common/layout';
 
@@ -5,11 +7,11 @@ import './App.scss';
 
 function App() {
   return (
-    <div className="App">
-      <MainLayout>
-        <Home />
-      </MainLayout>
-    </div>
+      <Routes>
+        <Route path="/" element={<MainLayout />}>
+          <Route path="/" element={<Home />} />
+        </Route>
+      </Routes>
   );
 }
 
