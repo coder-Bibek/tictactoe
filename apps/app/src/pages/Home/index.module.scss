@@ -29,7 +29,7 @@
     .nextButton {
       align-self: flex-end;
 
-      > button {
+      > a > button {
         background-color: #7B42FF;
         border: none;
         border-radius: 0.25rem;
@@ -72,7 +72,7 @@
 
         .nextButton {
 
-          > button {
+          > a > button {
             width: 6.5rem;
           }
         }
