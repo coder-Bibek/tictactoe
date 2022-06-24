@@ -1,0 +1,72 @@
+.homeContainer {
+  border: 1px solid rgb(114, 114, 114);
+  border-radius: 0.5rem;
+  box-shadow: 0 0 5px rgb(114, 114, 114);
+  height: 25rem;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 20rem;
+
+  .header {
+    font-size: 1.75rem;
+    text-align: center;
+  }
+
+  p {
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .playOptions {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 3rem;
+
+    > button {
+      border: none;
+      border-radius: 0.5rem;
+      color: white;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0.75rem;
+      width: 15rem;
+
+      &:active {
+        opacity: 0.95;
+      }
+
+      &:disabled {
+        cursor: initial;
+        opacity: 0.5;
+      }
+
+      &:nth-child(1) {
+        background-color: green;
+      }
+
+      &:nth-child(2) {
+        background-color: rgb(70, 70, 255);
+      }
+
+      &:nth-child(3) {
+        background-color: rgb(255, 115, 0);
+      }
+    }
+  }
+}
+
+@media only screen and (min-width: 576px) {
+  .homeContainer {
+    height: 25rem;
+    width: 30rem;
+
+    .header {
+      font-size: 2.5rem;
+    }
+  }
+}
