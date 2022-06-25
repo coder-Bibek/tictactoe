@@ -9,9 +9,22 @@
   transform: translate(-50%, -50%);
   width: 20rem;
 
+  .logoutContainer {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin: 0.75rem;
+
+    &:active {
+      opacity: 0.8;
+    }
+  }
+
   .header {
     font-size: 1.75rem;
     text-align: center;
+    margin-top: -0.5rem;
   }
 
   p {
