@@ -1,10 +1,9 @@
-import { useState } from "react";
-
 import Button from "../../common/components/atoms/Button";
+import { Storage } from "../../storage";
 import styles from "./index.module.scss";
 
 export default function Play() {
-    const [user, setUser] = useState("Prayush");
+    const user = Storage.getItem("user");
 
     return (
         <div className={styles.homeContainer}>
