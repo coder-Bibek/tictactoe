@@ -1,3 +1,6 @@
+build:
+	npx lerna exec --scope @tictactoe/app -- make build
+
 install:
 	yarn install
 
