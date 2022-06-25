@@ -1,15 +1,21 @@
 import { useState } from "react"
-import { Link} from "react-router-dom"
+import { Link, useLocation, useNavigate} from "react-router-dom"
 
 import Button from "../../common/components/atoms/Button"
 import { Storage } from "../../storage";
 import styles from "./index.module.scss"
 
 export default function Home() {
+    let navigate = useNavigate();
+    let location = useLocation();
+  
+    let from = location.state?.from?.pathname || "/";
+
     const [username, setUsername] = useState("");
 
     const handleClick = () => {
         Storage.setItem("user", username);
+        navigate(from, {replace: true})
     }
 
     return (
