@@ -18,7 +18,7 @@ export default function Home() {
     Storage.setItem("user", username);
     navigate(from, { replace: true });
     if (username) {
-        toast("Logged in succesfully", { type: "success" });
+      toast("Logged in succesfully", { type: "success", autoClose: 2000 });
     }
   };
 
@@ -38,7 +38,11 @@ export default function Home() {
         </section>
         <div className={styles.nextButton}>
           <Link to="/play">
-            <Button title={"Next"} isLoading={username==="" || username.length < 3} onClick={handleClick} />
+            <Button
+              title={"Next"}
+              isLoading={username === "" || username.length < 3}
+              onClick={handleClick}
+            />
           </Link>
         </div>
       </div>
