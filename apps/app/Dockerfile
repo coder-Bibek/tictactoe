@@ -13,5 +13,5 @@ RUN yarn build
 
 FROM nginx:1.20.0-alpine
 
-COPY apps/app/nginx/nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /usr/app/build /usr/share/nginx/html
