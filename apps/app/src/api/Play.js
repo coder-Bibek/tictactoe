@@ -26,6 +26,8 @@ async function createPlay(host) {
     await setDoc(doc(db, "play", host), {
       code,
       timestamp: new Date().getHours(),
+      host,
+      team: "",
     });
 
     Storage.setItem("host", true);
