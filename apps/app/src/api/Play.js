@@ -25,7 +25,10 @@ async function createPlay(host) {
   try {
     await setDoc(doc(db, "play", host), {
       code,
+      timestamp: new Date().getHours(),
     });
+
+    Storage.setItem("host", true);
 
     return {
       message: "success",
@@ -80,6 +83,8 @@ async function deletePlay() {
     const docRef = doc(db, "play", user);
 
     await deleteDoc(docRef);
+
+    Storage.removeItem("host");
 
     return {
       message: "success",

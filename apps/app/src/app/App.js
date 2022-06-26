@@ -4,6 +4,7 @@ import AuthenticatedRoute from "./Auth";
 import Home from "../pages/Home";
 import MainLayout from "../common/layout";
 import Play from "../pages/Play";
+import WaitingRoom from "../pages/Waiting";
 
 import "./App.scss";
 import { Storage } from "../storage";
@@ -11,6 +12,7 @@ import { Storage } from "../storage";
 function App() {
   const location = useLocation();
   const user = Storage.getItem("user");
+  const host = Storage.getItem("host");
 
   return (
     <Routes>
@@ -28,9 +30,25 @@ function App() {
         <Route
           path="/play"
           element={
-            <AuthenticatedRoute>
-              <Play />
-            </AuthenticatedRoute>
+            host ? (
+              <Navigate to="/wait" state={{ from: location }} replace />
+            ) : (
+              <AuthenticatedRoute>
+                <Play />
+              </AuthenticatedRoute>
+            )
+          }
+        />
+        <Route
+          path="/wait"
+          element={
+            !host ? (
+              <Navigate to="/play" state={{ from: location }} replace />
+            ) : (
+              <AuthenticatedRoute>
+                <WaitingRoom />
+              </AuthenticatedRoute>
+            )
           }
         />
       </Route>

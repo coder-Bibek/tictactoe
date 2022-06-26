@@ -35,6 +35,7 @@ export default function Play() {
 
     createPlay(user).then((response) => {
       if (response.status) {
+        navigate("/wait", { state: location.state, replace: true });
         toast("Room created succesfully", { type: "success", autoClose: 2000 });
         setHost(false);
       } else {
