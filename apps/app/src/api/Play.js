@@ -1,5 +1,6 @@
 import {
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
@@ -7,6 +8,7 @@ import {
 } from "firebase/firestore/lite";
 
 import { db } from "../db/index";
+import { Storage } from "../storage";
 
 async function createPlay(host) {
   const code = Math.floor(100000 + Math.random() * 900000);
@@ -21,8 +23,7 @@ async function createPlay(host) {
   }
 
   try {
-    await setDoc(doc(db, "play", "play"), {
-      host,
+    await setDoc(doc(db, "play", host), {
       code,
     });
 
@@ -48,21 +49,48 @@ async function fetchPlays() {
 }
 
 async function fetchPlay(host) {
-  const docRef = doc(db, "play", "play");
+  const docRef = doc(db, "play", host);
 
-  const play = await getDoc(docRef);
+  try {
+    const play = await getDoc(docRef);
 
-  if (play.data().host !== host) {
+    if (!play.exists()) {
+      return {
+        message: "no host found",
+        status: false,
+      };
+    }
+
     return {
-      message: "no host found",
+      data: play.data(),
+      status: true,
+    };
+  } catch (err) {
+    return {
+      message: err,
       status: false,
     };
   }
-
-  return {
-    data: play.data(),
-    status: true,
-  };
 }
 
-export { createPlay, fetchPlays, fetchPlay };
+async function deletePlay() {
+  const user = Storage.getItem("user");
+
+  try {
+    const docRef = doc(db, "play", user);
+
+    await deleteDoc(docRef);
+
+    return {
+      message: "success",
+      status: true,
+    };
+  } catch (error) {
+    return {
+      message: error,
+      status: false,
+    };
+  }
+}
+
+export { createPlay, deletePlay, fetchPlays, fetchPlay };

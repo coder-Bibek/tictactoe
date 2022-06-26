@@ -1,5 +1,11 @@
 # Tictactoe
 
+## Setup
+
+```
+copy `.env.example` and create a new `.env` and paste it
+```
+
 ## Install all dependencies
 
 ```

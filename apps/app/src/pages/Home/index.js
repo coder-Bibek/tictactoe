@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { createUser } from "../../api/User";
 
 import Button from "../../common/components/atoms/Button";
-import { Storage } from "../../storage";
 import styles from "./index.module.scss";
 
 export default function Home() {
@@ -15,11 +15,14 @@ export default function Home() {
   const [username, setUsername] = useState("");
 
   const handleClick = () => {
-    Storage.setItem("user", username);
-    navigate(from, { replace: true });
-    if (username) {
-      toast("Logged in succesfully", { type: "success", autoClose: 2000 });
-    }
+    createUser(username).then((response) => {
+      if (response.status) {
+        navigate(from, { replace: true });
+        toast("Logged in succesfully", { type: "success", autoClose: 2000 });
+      } else {
+        toast("Already exists", { type: "error", autoClose: 2000 });
+      }
+    });
   };
 
   return (
