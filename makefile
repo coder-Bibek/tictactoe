@@ -1,6 +1,12 @@
 build:
 	npx lerna exec --scope @tictactoe/app -- make build
 
+docker.start:
+	npx lerna exec --scope @tictactoe/app -- make docker.start
+
+docker.stop:
+	npx lerna exec --scope @tictactoe/app -- make docker.stop
+
 install:
 	yarn install
 

@@ -11,3 +11,14 @@ make install
 ```
 make run.app
 ```
+
+## Run docker containers
+```
+make docker.start
+```
+
+## Stop containers
+
+```
+make docker.stop
+```
