@@ -67,7 +67,7 @@ export default function WaitingRoom() {
           title={
             players["team"] === "" ? "Waiting For Players" : "Enter the Game"
           }
-          isLoading={players["team"] === ""}
+          isLoading={players["team"] === "" ||  code === ""}
         />
       </div>
     </div>
