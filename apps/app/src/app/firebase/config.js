@@ -8,10 +8,10 @@ const firebaseConfig = {
   storageBucket: "tictactoe-a61f1.appspot.com",
   messagingSenderId: "389035745",
   appId: config.firebase.APP_ID,
-  measurementId: "G-NFP4VVVBZX"
+  measurementId: "G-NFP4VVVBZX",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-export default app
+export default app;
