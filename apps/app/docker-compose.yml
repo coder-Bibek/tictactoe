@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  web:
+    image: tictactoe:local 
+    build: .
+    container_name: tictactoe-web
+    restart: always
+    ports:
+      - "30001:80"
