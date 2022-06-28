@@ -1,0 +1,14 @@
+.ReactModal__Content {
+  position: absolute;
+  top: 50% !important;
+  left: 50% !important;
+  width: 17rem;
+  min-height: 5rem;
+  transform: translate(-50%, -50%) !important;
+}
+
+@media only screen and (min-width: 576px) {
+  .ReactModal__Content {
+    width: 26rem;
+  }
+}

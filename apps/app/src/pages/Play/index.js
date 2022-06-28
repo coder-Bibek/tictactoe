@@ -5,11 +5,13 @@ import { createPlay } from "../../api/Play";
 import { deleteUser } from "../../api/User";
 import Button from "../../common/components/atoms/Button";
 import Logout from "../../common/components/atoms/Logout";
+import ReactModal from "../../common/components/atoms/Modal";
 import { Storage } from "../../storage";
 import styles from "./index.module.scss";
 
 export default function Play() {
   const [host, setHost] = useState(false);
+  const [open, setOpen] = useState(false);
   const user = Storage.getItem("user");
 
   let navigate = useNavigate();
@@ -55,8 +57,20 @@ export default function Play() {
       <div className={styles.playOptions}>
         <Button title={"Play Single"} isLoading={false} />
         <Button title={"Host a Room"} isLoading={host} onClick={hostClick} />
-        <Button title={"Join a Room"} isLoading={false} />
+        <Button
+          title={"Join a Room"}
+          isLoading={false}
+          onClick={() => setOpen(true)}
+        />
       </div>
+      <ReactModal isOpen={open}>
+        <p className={styles.errorMessage}>Enter</p>
+        <div className={styles.modalInputContainer}>
+          <input placeholder="Enter Room Code" />
+          <input placeholder="Enter Host username" />
+          <Button title={"Enter Lobby"} />
+        </div>
+      </ReactModal>
     </div>
   );
 }
