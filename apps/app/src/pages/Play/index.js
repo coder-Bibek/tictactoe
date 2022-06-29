@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { createPlay } from "../../api/Play";
+import { findRoom } from "../../api/Room";
 import { deleteUser } from "../../api/User";
 import Button from "../../common/components/atoms/Button";
 import Logout from "../../common/components/atoms/Logout";
@@ -10,8 +11,12 @@ import { Storage } from "../../storage";
 import styles from "./index.module.scss";
 
 export default function Play() {
+  const [error, setError] = useState("");
   const [host, setHost] = useState(false);
   const [open, setOpen] = useState(false);
+  const [room, setRoom] = useState("");
+  const [hoster, setHoster] = useState("");
+  const [loading, setLoading] = useState(false);
   const user = Storage.getItem("user");
 
   let navigate = useNavigate();
@@ -47,6 +52,16 @@ export default function Play() {
     });
   };
 
+  const handleLobby = () => {
+    setLoading(true);
+    findRoom(room, hoster).then((response) => {
+      setLoading(false);
+      if (!response.status) {
+        setError(response.message);
+      }
+    });
+  };
+
   return (
     <div className={styles.homeContainer}>
       <div className={styles.logoutContainer}>
@@ -64,11 +79,33 @@ export default function Play() {
         />
       </div>
       <ReactModal isOpen={open}>
-        <p className={styles.errorMessage}>Enter</p>
+        <div className={styles.closeButton}>
+          <Button title={"close"} onClick={() => setOpen(false)} />
+        </div>
+        <p className={styles.errorMessage}>{error}</p>
         <div className={styles.modalInputContainer}>
-          <input placeholder="Enter Room Code" />
-          <input placeholder="Enter Host username" />
-          <Button title={"Enter Lobby"} />
+          <input
+            type="number"
+            placeholder="Enter Room Code"
+            value={room}
+            onChange={(e) => {
+              setRoom(e.target.value);
+              setError("");
+            }}
+          />
+          <input
+            placeholder="Enter Host username"
+            value={hoster}
+            onChange={(e) => {
+              setHoster(e.target.value);
+              setError("");
+            }}
+          />
+          <Button
+            title={"Enter Lobby"}
+            isLoading={room === "" || hoster === "" || loading}
+            onClick={handleLobby}
+          />
         </div>
       </ReactModal>
     </div>

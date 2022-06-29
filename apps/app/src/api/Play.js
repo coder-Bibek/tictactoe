@@ -53,6 +53,7 @@ async function fetchPlays() {
   return plays;
 }
 
+
 async function fetchPlay(host) {
   const docRef = doc(db, "play", host);
 
